@@ -1,1 +1,3 @@
-constants.json
+__pycache__
+
+.env
