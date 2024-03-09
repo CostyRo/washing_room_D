@@ -1,0 +1,16 @@
+name: Set env variables
+
+on:
+  workflow_dispatch:
+
+jobs:
+  set_vars:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set env variables
+        run: |
+          echo "M1=${{ secrets.M1 }}" >> $GITHUB_ENV
+          echo "M2=${{ secrets.M2 }}" >> $GITHUB_ENV
+          echo "M3=${{ secrets.M3 }}" >> $GITHUB_ENV
+          echo "M4=${{ secrets.M4 }}" >> $GITHUB_ENV
+          echo "TOKEN=${{ secrets.TOKEN }}" >> $GITHUB_ENV
