@@ -1,51 +1,48 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: Arial,sans-serif;
   margin: 0;
   padding: 0;
   background-color: #96caff;
 }
 
-h1 {
+#title{
   text-align: center;
-  margin-top: 20px;
+  margin-top: 1em;
 }
 
 .washers-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
 }
 
 .washers {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 20%;
-  grid-row-gap: 1%;
-  margin: 20px auto;
-  max-width: 800px;
-  padding: 20px;
+  grid-template-columns: repeat(2,1fr);
+  grid-column-gap: 2.5%;
+  grid-row-gap: 5%;
+  width: 75%;
+  padding: 5% 0%;
 }
 
 .washer {
   display: flex;
-  align-items: center;
   border: 1px solid #ccc;
-  padding: 0% 50%;
+  align-items: center;
+  justify-content: center;
+  padding: 0% 10%;
   text-align: center;
   background-color: #fff;
 }
 
 .content {
   flex: 1;
-  font-size: 24px;
+  font-size: 1.5em;
 }
 
 @media only screen and (max-width: 600px) {
   .washers {
-    grid-template-columns: repeat(1, 4fr);
-  }
-  .washer {
-    padding: 0% 30%;
+    grid-template-columns: repeat(1,4fr);
+    width: 50%;
   }
 }
