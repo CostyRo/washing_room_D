@@ -5,10 +5,14 @@ document.addEventListener("DOMContentLoaded",() => {
     for(let i=1;i<5;i++){
       if(!data_ready[i-1]){
         const washer_elem = document.getElementById(`M${i}.remaining-time`)
+        const dots = washer_elem.textContent.match(/\./g)
+        if(dots && dots.length == 3){
+          washer_elem.textContent = "Timp rămas: Se încarcă"
+        }
         washer_elem.textContent+="."
       }
     }
-  }, 200)
+  },200)
 })
 
 for(let i=1;i<5;i++){
@@ -21,10 +25,10 @@ for(let i=1;i<5;i++){
     })
     .then(data => {
       const washer_elem = document.getElementById(`M${i}.remaining-time`)
-      washer_elem.textContent = "Timp rămas: " + data[`M${i}`]
+      washer_elem.textContent = "Timp rămas: "+data[`M${i}`]
       data_ready[i-1] = true
     })
     .catch(error => {
-      console.error("Error: ", error)
+      console.error("Error: ",error)
     });
 }
