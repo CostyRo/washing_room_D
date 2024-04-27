@@ -21,13 +21,13 @@ async def fetch_washer_data(id):
   async with\
     aiohttp.ClientSession() as session,\
     session.get(
-      f"https://api.smartthings.com/v1/devices/{id}/status",
+      f"https://api.smartthings.com/v1/devices/{id}/components/main/status",
       headers={
         "Authorization": f"Bearer {TOKEN}",
         "Content-Type": "application/json"
       }
     ) as response:
-      return (await response.json())["components"]["main"]["samsungce.washerOperatingState"]
+      return (await response.json())["samsungce.washerOperatingState"]
 
 app = FastAPI()
 app.mount("/static",StaticFiles(directory="static"),name="static")

@@ -35,58 +35,26 @@ h1 {
   border: 2px solid #666666;
   align-items: center;
   justify-content: center;
-  padding: 0% 10%;
   text-align: center;
   background-color: #2ecc70;
   box-shadow: 10px 10px 10px rgba(0,0,0,0.8);
 }
 
-.content {
+.follow {
   order: 1;
-  font-size: 1.5em;
+  background-color: rgba(0,0,0,0);
+  background-image: url("eye.svg");
+  background-size: cover;
+  background-position: center;
+  padding: 5% 5%;
+  margin: 2% 0% 0% 85%;
+  border: none;
+  cursor: pointer;
 }
 
-.tub {
+.content {
   order: 2;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-}
-
-.zero {
-  text-align: end;
-  font-size: 1.2em;
-}
-
-.full {
-  font-size: 1.2em;
-}
-
-.loading-bar {
-  position: relative;
-  width: 100%;
-  background-color: #c4c4c4;
-  margin: 0% 2% 1% 2%;
-  border: 2px solid #666666;
-}
-
-.progress {
-  height: 100%;
-  background-color: #27399c;
-  width: 88.88%;
-}
-
-.progress::before {
-  content: "";
-  position: absolute;
-  height: 100%;
-  width: 5px;
-  background-color: #b30000;
-  left: 88.88%;
-}
-
-.warning {
-  order: 3;
+  font-size: 1.5em;
 }
 
 @media only screen and (max-width: 600px) {

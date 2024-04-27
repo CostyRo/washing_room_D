@@ -1,3 +1,6 @@
 __pycache__/
 venv/
 .env
+
+api_search.py
+api_search.json

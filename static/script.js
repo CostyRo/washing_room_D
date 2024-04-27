@@ -1,6 +1,14 @@
 const data_ready = [false,false,false,false]
 
 document.addEventListener("DOMContentLoaded",() => {
+  document.querySelectorAll('.follow').forEach(button => {
+    button.addEventListener('click', () => {
+      const is_closed = button.style.backgroundImage.includes('closed')
+      button.style.backgroundImage = 
+        `url('static/${is_closed ? "" : "closed_"}eye.svg')`
+    })
+  })
+
   setInterval(() => {
     for(let i=1;i<5;i++){
       if(!data_ready[i-1]){
