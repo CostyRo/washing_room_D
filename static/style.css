@@ -1,13 +1,16 @@
 body {
-  font-family: Arial,sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #96caff;
+  font-family: 'Courier New',monospace;
+  background-color: #2e77af;
 }
 
-#title{
+h1 {
+  margin: 5% 0% 0% 0%;
+}
+
+.title {
   text-align: center;
-  margin-top: 1em;
+  margin-top: 2.5%;
+  color: #333333;
 }
 
 .washers-container {
@@ -22,27 +25,72 @@ body {
   grid-column-gap: 2.5%;
   grid-row-gap: 5%;
   width: 75%;
-  padding: 5% 0%;
+  padding-top: 5%;
 }
 
 .washer {
+  position: relative;
   display: flex;
-  border: 1px solid #ccc;
+  flex-direction: column;
+  border: 2px solid #666666;
   align-items: center;
   justify-content: center;
   padding: 0% 10%;
   text-align: center;
-  background-color: #fff;
+  background-color: #2ecc70;
+  box-shadow: 10px 10px 10px rgba(0,0,0,0.8);
 }
 
 .content {
-  flex: 1;
+  order: 1;
   font-size: 1.5em;
+}
+
+.tub {
+  order: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.zero {
+  text-align: end;
+  font-size: 1.2em;
+}
+
+.full {
+  font-size: 1.2em;
+}
+
+.loading-bar {
+  position: relative;
+  width: 100%;
+  background-color: #c4c4c4;
+  margin: 0% 2% 1% 2%;
+  border: 2px solid #666666;
+}
+
+.progress {
+  height: 100%;
+  background-color: #27399c;
+  width: 88.88%;
+}
+
+.progress::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 5px;
+  background-color: #b30000;
+  left: 88.88%;
+}
+
+.warning {
+  order: 3;
 }
 
 @media only screen and (max-width: 600px) {
   .washers {
     grid-template-columns: repeat(1,4fr);
-    width: 50%;
   }
 }
