@@ -25,7 +25,7 @@ h1 {
   grid-column-gap: 2.5%;
   grid-row-gap: 5%;
   width: 75%;
-  padding-top: 5%;
+  padding: 5% 0%;
 }
 
 .washer {
@@ -55,6 +55,10 @@ h1 {
 .content {
   order: 2;
   font-size: 1.5em;
+}
+
+.info {
+  order: 3;
 }
 
 @media only screen and (max-width: 600px) {

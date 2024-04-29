@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI,Request
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
@@ -11,10 +11,10 @@ load_dotenv()
 TOKEN = getenv("TOKEN")
 
 washers=[
-  {"name": "M1","id": getenv("M1")},
-  {"name": "M2","id": getenv("M2")},
-  {"name": "M3","id": getenv("M3")},
-  {"name": "M4","id": getenv("M4")}
+  {"name": "M1","id": getenv("M1"),"turn": None,"IPs": set()},
+  {"name": "M2","id": getenv("M2"),"turn": None,"IPs": set()},
+  {"name": "M3","id": getenv("M3"),"turn": None,"IPs": set()},
+  {"name": "M4","id": getenv("M4"),"turn": None,"IPs": set()}
 ]
 
 async def fetch_washer_data(id):
@@ -37,11 +37,27 @@ async def home():
   return FileResponse("static/index.html")
 
 @app.get("/washer-info/{id}")
-async def info(id: int):
+async def info(id: int,request: Request):
+  data = await fetch_washer_data(washers[id-1]["id"])
+  last_turn = washers[id-1]["turn"]
+  washers[id-1]["turn"] =\
+    data["operationTime"]["timestamp"] if data["operatingState"]["value"] == "running" else None
+
+  if last_turn != washers[id-1]["turn"]:
+    washers[id-1]["IPs"] = set()
+
   return {
-    f"M{id}" :
-      (
-        datas:=await fetch_washer_data(washers[id-1]["id"]),
-        datas["remainingTimeStr"]["value"] if datas["operatingState"]["value"] == "running" else "Oprit"
-      )[1]
+    "remaining_time":
+      data["remainingTimeStr"]["value"] if data["operatingState"]["value"] == "running" else "Oprit",
+    "no IPs": len(washers[id-1]["IPs"]),
+    "follow": request.client.host in washers[id-1]["IPs"]
   }
+
+@app.get("/followers/{id}/{close}")
+async def followers(id: int,close: int,request: Request):
+  if close:
+    washers[id-1]["IPs"].remove(request.client.host)
+  else:
+    washers[id-1]["IPs"].add(request.client.host)
+
+  return {"no IPs": len(washers[id-1]["IPs"])}  
